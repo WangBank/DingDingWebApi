@@ -1,5 +1,5 @@
-using DDWebApi_Core.JWT;
-using DDWebApi_Core.SwaggerModel;
+using AvoidForgetting.JWT;
+using AvoidForgetting.SwaggerModel;
 using JWTToken.Filter;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -12,15 +12,15 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace DDWebApi_Core
+namespace AvoidForgetting
 {
     /// <summary>
-    /// Ö÷»ú´´½¨Ö®ºóÔËĞĞµÄÀà
+    /// ä¸»æœºåˆ›å»ºä¹‹åè¿è¡Œçš„ç±»
     /// </summary>
     public class Startup
     {
         /// <summary>
-        /// ¹¹Ôìº¯Êı
+        /// æ„é€ å‡½æ•°
         /// </summary>
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
@@ -29,20 +29,20 @@ namespace DDWebApi_Core
         }
 
         /// <summary>
-        /// »ñÈ¡ÅäÖÃÎÄ¼şÀà
+        /// è·å–é…ç½®æ–‡ä»¶ç±»
         /// </summary>
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        /// ·şÎñ×¢Èë×ÜÈë¿Ú
+        /// æœåŠ¡æ³¨å…¥æ€»å…¥å£
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ITokenHelper, TokenHelper>();
-            //¶ÁÈ¡ÅäÖÃÎÄ¼şÅäÖÃµÄjwtÏà¹ØÅäÖÃ
+            //è¯»å–é…ç½®æ–‡ä»¶é…ç½®çš„jwtç›¸å…³é…ç½®
             services.Configure<JWTConfig>(Configuration.GetSection("JWTConfig"));
-            //ÆôÓÃJWT
+            //å¯ç”¨JWT
             services.AddAuthentication(Options =>
             {
                 Options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -54,17 +54,17 @@ namespace DDWebApi_Core
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "²âÊÔ½Ó¿ÚÎÄµµ",
-                    Description = "²âÊÔ½Ó¿Ú"
+                    Title = "æµ‹è¯•æ¥å£æ–‡æ¡£",
+                    Description = "æµ‹è¯•æ¥å£"
                 });
-                // Îª Swagger ÉèÖÃxmlÎÄµµ×¢ÊÍÂ·¾¶
+                // ä¸º Swagger è®¾ç½®xmlæ–‡æ¡£æ³¨é‡Šè·¯å¾„
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
                 c.DocInclusionPredicate((docName, description) => true);
-                //Ìí¼Ó¶Ô¿ØÖÆÆ÷µÄ±êÇ©(ÃèÊö)
-                c.DocumentFilter<ApplyTagDescriptions>();//ÏÔÊ¾ÀàÃû
-                c.CustomSchemaIds(type => type.FullName);// ¿ÉÒÔ½â¾öÏàÍ¬ÀàÃû»á±¨´íµÄÎÊÌâ
+                //æ·»åŠ å¯¹æ§åˆ¶å™¨çš„æ ‡ç­¾(æè¿°)
+                c.DocumentFilter<ApplyTagDescriptions>();//æ˜¾ç¤ºç±»å
+                c.CustomSchemaIds(type => type.FullName);// å¯ä»¥è§£å†³ç›¸åŒç±»åä¼šæŠ¥é”™çš„é—®é¢˜
                 c.OperationFilter<AuthTokenHeaderParameter>();
             });
             services.AddScoped<TokenFilter>();
@@ -91,9 +91,9 @@ namespace DDWebApi_Core
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web App v1");
-                c.RoutePrefix = "doc";//ÉèÖÃ¸ù½Úµã·ÃÎÊ
-                //c.DocExpansion(DocExpansion.None);//ÕÛµş
-                c.DefaultModelsExpandDepth(-1);//²»ÏÔÊ¾Schemas
+                c.RoutePrefix = "doc";//è®¾ç½®æ ¹èŠ‚ç‚¹è®¿é—®
+                //c.DocExpansion(DocExpansion.None);//æŠ˜å 
+                c.DefaultModelsExpandDepth(-1);//ä¸æ˜¾ç¤ºSchemas
             });
           
             app.UseRouting();

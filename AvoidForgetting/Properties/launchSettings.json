@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "DDWebApi_Core": {
+    "AvoidForgetting": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

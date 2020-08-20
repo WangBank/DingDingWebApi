@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DDWebApi_Core.SwaggerModel
+namespace AvoidForgetting.SwaggerModel
 {
     /// <summary>
     /// Swagger description
@@ -21,7 +21,7 @@ namespace DDWebApi_Core.SwaggerModel
         {
             swaggerDoc.Tags = new List<OpenApiTag>
             {
-                new OpenApiTag{Name ="Login",Description="这是登录的文档"}
+                new OpenApiTag{Name ="Login",Description="Login Doc"}
             };
         }
     }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DDWebApi_Core.JWT
+namespace AvoidForgetting.JWT
 {
     /// <summary>
     /// swagger 添加Token参数
@@ -32,21 +32,25 @@ namespace DDWebApi_Core.JWT
         /// <param name="context"></param>
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            string tokenName = Configuration.GetSection("JWTConfig").GetSection("tokenName").Value;
-            operation.Parameters ??= new List<OpenApiParameter>();
-            //MemberAuthorizeAttribute 自定义的身份验证特性标记
-            var isAuthor = operation != null && context != null;
-            if (isAuthor)
+            if (!context.ApiDescription.RelativePath.Contains("api/Login") && !context.ApiDescription.RelativePath.Contains("api/TokenValidata"))
             {
-                //in query header 
-                operation.Parameters.Add(new OpenApiParameter()
+                string tokenName = Configuration.GetSection("JWTConfig").GetSection("tokenName").Value;
+                operation.Parameters ??= new List<OpenApiParameter>();
+                //MemberAuthorizeAttribute 自定义的身份验证特性标记
+                var isAuthor = operation != null && context != null;
+                if (isAuthor)
                 {
-                    Name = tokenName,
-                    In = ParameterLocation.Header, //query formData ..
-                    Description = "身份验证Token",
-                    Required = false
-                });
+                    //in query header 
+                    operation.Parameters.Add(new OpenApiParameter()
+                    {
+                        Name = tokenName,
+                        In = ParameterLocation.Header, //query formData ..
+                        Description = "身份验证Token",
+                        Required = false
+                    });
+                }
             }
+            
         }
     }
 }

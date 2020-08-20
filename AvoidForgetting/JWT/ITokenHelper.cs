@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DDWebApi_Core.JWT
+namespace AvoidForgetting.JWT
 {
     /// <summary>
     /// token工具类的接口，方便使用依赖注入，很简单提供两个常用的方法

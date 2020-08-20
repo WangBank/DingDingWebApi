@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DDWebApi_Core.Controllers
+namespace AvoidForgetting.Controllers
 {
     /// <summary>
     /// 1 统一跨域处理
     /// 2 统一路由处理
     /// </summary>
     [EnableCors("AllowCors")]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CommonBaseController : ControllerBase
     {

@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DDWebApi_Core.Entities.Dtos
+namespace AvoidForgetting.JWT
 {
     /// <summary>
-    /// 登录类Dto
+    /// token验证结果
     /// </summary>
-    public class UserDto
+    public enum TokenType
     {
         /// <summary>
-        /// 用户名
+        /// 成功
         /// </summary>
-        public string LoginID { get; set; }
+        Ok,
         /// <summary>
-        /// 密码
+        /// 失败
         /// </summary>
-        public string Password { get; set; }
+        Fail,
+        /// <summary>
+        /// 过期
+        /// </summary>
+        Expired
     }
 }

@@ -1,10 +1,10 @@
-﻿using DDWebApi_Core.JWT;
+﻿using AvoidForgetting.JWT;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DDWebApi_Core.Entities.Models
+namespace AvoidForgetting.Entities.Models
 {
     /// <summary>
     /// 返回类
@@ -26,6 +26,6 @@ namespace DDWebApi_Core.Entities.Models
             /// <summary>
             /// Token信息
             /// </summary>
-            public TnToken TnToken { get; set; }
+            public TnToken Result { get; set; }
     }
 }

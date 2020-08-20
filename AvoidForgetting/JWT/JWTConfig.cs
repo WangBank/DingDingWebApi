@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DDWebApi_Core.JWT
+namespace AvoidForgetting.JWT
 {
     /// <summary>
     /// 配置token生成信息

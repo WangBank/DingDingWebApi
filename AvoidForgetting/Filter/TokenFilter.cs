@@ -1,5 +1,5 @@
-﻿using DDWebApi_Core.Entities.Models;
-using DDWebApi_Core.JWT;
+﻿using AvoidForgetting.Entities.Models;
+using AvoidForgetting.JWT;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
@@ -64,7 +64,7 @@ namespace JWTToken.Filter
             string Issuer = Configuration.GetSection("JWTConfig").GetSection("Issuer").Value;
             string Audience = Configuration.GetSection("JWTConfig").GetSection("Audience").Value;
             //验证jwt,同时取出来jwt里边的用户ID
-            TokenType tokenType = tokenHelper.ValiTokenState(token, a => a["iss"] == Issuer && a["aud"] == Audience, action => { userId = action["userId"]; });
+            TokenType tokenType = tokenHelper.ValiTokenState(token, a => a["iss"] == Issuer && a["aud"] == Audience, action => { userId = action["username"]; });
             if (tokenType == TokenType.Fail)
             {
                 ret.Code = 202;

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace DDWebApi_Core
+namespace AvoidForgetting
 {
     /// <summary>
     /// Èë¿ÚÀà

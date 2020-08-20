@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DDWebApi_Core.JWT
+namespace AvoidForgetting.Entities.Models
 {
     /// <summary>
-    /// 存放Token 跟过期时间的类
+    /// 认证信息
     /// </summary>
-    public class TnToken
+    public class Sign
     {
         /// <summary>
-        /// token
+        /// 类型
         /// </summary>
-        public string TokenStr { get; set; }
+        public int Type { get; set; }
+
         /// <summary>
-        /// 过期时间
+        /// 数据
         /// </summary>
-        public DateTime Expires { get; set; }
+        public string Data { get; set; }
     }
 }

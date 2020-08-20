@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DDWebApi_Core.JWT
+namespace AvoidForgetting.JWT
 {
     /// <summary>
     /// Token生成类
@@ -84,7 +84,7 @@ namespace DDWebApi_Core.JWT
                 notBefore: now,//当前时间token生成时间
                 expires: expires,//过期时间
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Value.IssuerSigningKey)), SecurityAlgorithms.HmacSha256));
-            return new TnToken { TokenStr = new JwtSecurityTokenHandler().WriteToken(token), Expires = expires };
+            return new TnToken { Token = new JwtSecurityTokenHandler().WriteToken(token), Expires = expires };
         }
 
 
