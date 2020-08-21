@@ -20,12 +20,12 @@ namespace AvoidForgetting.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ReturnModel Post()
+        public CommonResponse Post()
         {
             var sign = new Sign { Data = "afhgkasghkjasbnvkbva", Type = 1 };
-            return new ReturnModel { 
+            return new CommonResponse { 
                 Code = 0,
-                Msg = "请求成功",
+                Message = "请求成功",
                 Data = sign
             };
         }

@@ -46,14 +46,14 @@ namespace JWTToken.Filter
         public void OnActionExecuting(ActionExecutingContext context)
         {
             string tokenName = Configuration.GetSection("JWTConfig").GetSection("tokenName").Value;
-            ReturnModel ret = new ReturnModel();
+            CommonResponse ret = new CommonResponse();
             //获取token
             bool HasToken = context.HttpContext.Request.Headers.TryGetValue(tokenName, out var tokenobj);
 
             if (!HasToken)
             {
                 ret.Code = 201;
-                ret.Msg = "token不能为空";
+                ret.Message = "token不能为空";
                 context.Result = new JsonResult(ret);
                 return;
             }
@@ -68,14 +68,14 @@ namespace JWTToken.Filter
             if (tokenType == TokenType.Fail)
             {
                 ret.Code = 202;
-                ret.Msg = "token验证失败";
+                ret.Message = "token验证失败";
                 context.Result = new JsonResult(ret);
                 return;
             }
             if (tokenType == TokenType.Expired)
             {
                 ret.Code = 205;
-                ret.Msg = "token已经过期";
+                ret.Message = "token已经过期";
                 context.Result = new JsonResult(ret);
             }
             if (!string.IsNullOrEmpty(userId))

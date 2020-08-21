@@ -25,55 +25,19 @@ namespace AvoidForgetting.Controllers
         {
             tokenHelper = _tokenHelper;
         }
-        /// <summary>
-        /// 登录测试
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ReturnModel Login([FromBody]UserDto user)
-        {
-            var ret = new ReturnModel();
-            try
-            {
-                if (string.IsNullOrWhiteSpace(user.username) || string.IsNullOrWhiteSpace(user.password))
-                {
-                    ret.Code = -1;
-                    ret.Msg = "用户名密码不能为空";
-                    return ret;
-                }
-
-                if (1 == 1)
-                {
-                    Dictionary<string, string> keyValuePairs = new Dictionary<string, string>
-                    {
-                        { "username", user.username }
-                    };
-                    ret.Code = 0;
-                    ret.Msg = "登录成功";
-                    ret.Result = tokenHelper.CreateToken(keyValuePairs);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                ret.Code = -1;
-                ret.Msg = "登录失败:" + ex.Message;
-            }
-            return ret;
-        }
+        
 
         /// <summary>
         /// axios get测试
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ReturnModel GetInfo()
+        public CommonResponse GetInfo()
         {
-            return new ReturnModel { 
+            return new CommonResponse { 
                 Code = 0,
                 Data = "zz",
-                Msg  = "请求成功" 
+                Message  = "请求成功" 
             };
         }
     }

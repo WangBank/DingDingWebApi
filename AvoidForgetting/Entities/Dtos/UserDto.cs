@@ -93,6 +93,10 @@ namespace AvoidForgetting.Entities.Dtos
         /// </summary>
         public object role { get; set; }
 
+        public string menus { get; set; }
+
     }
+
+   
 
 }

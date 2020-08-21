@@ -9,7 +9,7 @@ namespace AvoidForgetting.Entities.Models
     /// <summary>
     /// 返回类
     /// </summary>
-    public class ReturnModel
+    public class CommonResponse
     {
             /// <summary>
             /// 返回码
@@ -18,7 +18,7 @@ namespace AvoidForgetting.Entities.Models
             /// <summary>
             /// 消息
             /// </summary>
-            public string Msg { get; set; }
+            public string Message { get; set; }
             /// <summary>
             /// 数据
             /// </summary>
@@ -26,6 +26,6 @@ namespace AvoidForgetting.Entities.Models
             /// <summary>
             /// Token信息
             /// </summary>
-            public TnToken Result { get; set; }
+            public TnToken TokenInfo { get; set; }
     }
 }

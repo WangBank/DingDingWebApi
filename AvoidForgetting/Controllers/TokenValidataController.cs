@@ -36,34 +36,34 @@ namespace AvoidForgetting.Controllers
         /// <param name="access_token">身份验证Token</param>
         /// <returns></returns>
         [HttpGet("ValiToken")]
-        public ReturnModel ValiToken(string access_token)
+        public CommonResponse ValiToken(string access_token)
         {
             if (string.IsNullOrEmpty(access_token))
             {
-                return new ReturnModel
+                return new CommonResponse
                 {
                     Code = 500,
-                    Msg = "缺少参数access_token",
-                    Result = null,
+                    Message = "缺少参数access_token",
+                    TokenInfo = null,
                 };
             }
-            var ret = new ReturnModel
+            var ret = new CommonResponse
             {
-                Result = new TnToken()
+                TokenInfo = new TnToken()
             };
             
             bool isvilidate = tokenHelper.ValiToken(access_token);
             if (isvilidate)
             {
                 ret.Code = 200;
-                ret.Msg = "Token验证成功";
-                ret.Result.Token = access_token;
+                ret.Message = "Token验证成功";
+                ret.TokenInfo.Token = access_token;
             }
             else
             {
                 ret.Code = 500;
-                ret.Msg = "Token验证失败";
-                ret.Result.Token = access_token;
+                ret.Message = "Token验证失败";
+                ret.TokenInfo.Token = access_token;
             }
             return ret;
         }
@@ -73,11 +73,11 @@ namespace AvoidForgetting.Controllers
         /// <param name="access_token">	身份验证Token</param>
         /// <returns></returns>
         [HttpGet("ValiTokenState")]
-        public ReturnModel ValiTokenState(string access_token)
+        public CommonResponse ValiTokenState(string access_token)
         {
-            var ret = new ReturnModel
+            var ret = new CommonResponse
             {
-                Result = new TnToken()
+                TokenInfo = new TnToken()
             };
             string Issuer = Configuration.GetSection("JWTConfig").GetSection("Issuer").Value;
             string Audience = Configuration.GetSection("JWTConfig").GetSection("Audience").Value;
@@ -86,13 +86,13 @@ namespace AvoidForgetting.Controllers
             if (tokenType == TokenType.Fail)
             {
                 ret.Code = 202;
-                ret.Msg = "token验证失败";
+                ret.Message = "token验证失败";
                 return ret;
             }
             if (tokenType == TokenType.Expired)
             {
                 ret.Code = 205;
-                ret.Msg = "token已经过期";
+                ret.Message = "token已经过期";
                 return ret;
             }
 
@@ -104,7 +104,7 @@ namespace AvoidForgetting.Controllers
             };
             data.Add(bb);
             ret.Code = 200;
-            ret.Msg = "访问成功!";
+            ret.Message = "访问成功!";
             ret.Data = data;
             return ret;
         }
